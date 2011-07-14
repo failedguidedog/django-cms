@@ -83,10 +83,12 @@ def details(request, slug):
             redirect_url = "/%s/%s" % (current_language, redirect_url.lstrip("/"))
         # add language prefix to url
         return HttpResponseRedirect(redirect_url)
-    
-    # Check if the page has a redirect page defined for this language. 
+
+    # Check if the page has a redirect page defined for this language.
+    # Also check if the request contains any GET parameters and do NOT redirect if it does.
     redirect_to_page = page.get_redirect_to_page(language=current_language)
-    if redirect_to_page and redirect_to_page.pk != page.pk:
+    get_param_count = len(request.GET)
+    if redirect_to_page and redirect_to_page.pk != page.pk and get_param_count < 1:
         return HttpResponseRedirect(redirect_to_page.get_absolute_url())
 
     # permission checks
