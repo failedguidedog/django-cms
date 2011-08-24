@@ -105,7 +105,7 @@ jQuery(document).ready(function($) {
             padding: 0,
             minWidth: 800,
             minHeight: 300,
-            height: 400,
+            height: 800,
             closeButton: '<a class="cms_toolbar_button cms_toolbar_iconbutton nyroModalClose" href="#" id="closeBut"><span><strong>Close</strong></span></a>'
         });
         /*
