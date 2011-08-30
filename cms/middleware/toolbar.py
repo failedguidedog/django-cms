@@ -53,6 +53,9 @@ class ToolbarMiddleware(object):
                 return False
         except NoReverseMatch:
             pass
+        if hasattr(cms_settings, 'CMS_TOOLBAR_IGNORE_URLS'):
+            if True in [request.path.startswith(url) for url in cms_settings.CMS_TOOLBAR_IGNORE_URLS]:
+                return False
         if is_media_request(request):
             return False
         if "edit" in request.GET:
@@ -78,7 +81,7 @@ class ToolbarMiddleware(object):
                 request.session['cms_edit'] = False
             if "edit" in request.GET:
                 request.session['cms_edit'] = True
-                
+
     def process_view(self, request, view_func, view_args, view_kwargs):
         request.view_func = view_func
 
