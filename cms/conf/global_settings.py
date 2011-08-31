@@ -125,3 +125,8 @@ CMS_CACHE_PREFIX = 'cms-'
 
 # Menu cache duration
 MENU_CACHE_DURATION = 60 * 60
+
+# A tuple of URL beginning for which ToolbarMiddleware will not include the CMS Toolbar.
+# Usefull when you have an application that clashes with Toolbar's JS or CSS.
+# example: ('/sentry',)
+CMS_TOOLBAR_IGNORE_URLS = ()
